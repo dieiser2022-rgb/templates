@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Di_o_Trader · Diário de Trade — Modelos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: #141720;
+      --text: #e8eaf0;
+      --muted: #9aa0b0;
+      --line: rgba(255, 255, 255, 0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Sora', system-ui, sans-serif;
+      background: radial-gradient(1200px 700px at 80% -10%, #1b2030 0%, var(--bg) 55%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 48px 24px 80px;
+    }
+    .wrap { max-width: 1040px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 56px; }
+    .brand {
+      font-weight: 800;
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #d4af37, #fff, #7f7fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .brand .u { opacity: 0.55; }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--muted);
+      margin-top: 14px;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .lead { color: var(--muted); max-width: 620px; margin: 22px auto 0; line-height: 1.6; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+    .card {
+      position: relative;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 26px;
+      overflow: hidden;
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+    .card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.22); }
+    .swatch { display: flex; gap: 8px; margin-bottom: 20px; }
+    .swatch span { width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.12); }
+    .num { font-family: 'JetBrains Mono', monospace; color: var(--muted); font-size: 0.8rem; letter-spacing: 0.1em; }
+    .card h2 { font-size: 1.25rem; margin: 6px 0 8px; font-weight: 700; }
+    .card p { color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+    .open { margin-top: 18px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #d4af37; }
+    footer { text-align: center; margin-top: 60px; color: var(--muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">Di<span class="u">_</span>o<span class="u">_</span>Trader</div>
+      <div class="tag">Diário de Trade · 5 Modelos</div>
+      <p class="lead">Cinco templates independentes de diário de operações, cada um com uma paleta de cores própria. Abra qualquer um direto no navegador e comece a registrar seus trades.</p>
+    </header>
+
+    <div class="grid">
+      <a class="card" href="modelo-1-preto-dourado.html">
+        <div class="swatch"><span style="background:#0b0b0d"></span><span style="background:#d4af37"></span><span style="background:#1c1c22"></span></div>
+        <div class="num">MODELO 01</div>
+        <h2>Preto &amp; Dourado</h2>
+        <p>Elegante e sóbrio. Tema escuro premium com detalhes dourados e tabela de operações.</p>
+        <div class="open">abrir modelo →</div>
+      </a>
+
+      <a class="card" href="modelo-2-azul-petroleo.html">
+        <div class="swatch"><span style="background:#0d3b45"></span><span style="background:#2ec4b6"></span><span style="background:#f7f9fb"></span></div>
+        <div class="num">MODELO 02</div>
+        <h2>Azul Petróleo &amp; Branco</h2>
+        <p>Claro e limpo. Visual corporativo com acento turquesa e cards de estatística.</p>
+        <div class="open" style="color:#2ec4b6">abrir modelo →</div>
+      </a>
+
+      <a class="card" href="modelo-3-verde-grafite.html">
+        <div class="swatch"><span style="background:#10231c"></span><span style="background:#3ddc84"></span><span style="background:#2b2f36"></span></div>
+        <div class="num">MODELO 03</div>
+        <h2>Verde &amp; Grafite</h2>
+        <p>Terminal de trader. Estética de painel escuro com verde neon e grid monoespaçado.</p>
+        <div class="open" style="color:#3ddc84">abrir modelo →</div>
+      </a>
+
+      <a class="card" href="modelo-4-roxo-neon.html">
+        <div class="swatch"><span style="background:#15081f"></span><span style="background:#b14aff"></span><span style="background:#ff4ecd"></span></div>
+        <div class="num">MODELO 04</div>
+        <h2>Roxo &amp; Neon</h2>
+        <p>Cyberpunk. Gradientes vibrantes, brilho neon e formulário de registro moderno.</p>
+        <div class="open" style="color:#b14aff">abrir modelo →</div>
+      </a>
+
+      <a class="card" href="modelo-5-bege-marrom.html">
+        <div class="swatch"><span style="background:#f3ebdd"></span><span style="background:#8a5a34"></span><span style="background:#c9a36a"></span></div>
+        <div class="num">MODELO 05</div>
+        <h2>Bege &amp; Marrom</h2>
+        <p>Caderno clássico. Tom quente e analógico, inspirado em um diário de papel.</p>
+        <div class="open" style="color:#8a5a34">abrir modelo →</div>
+      </a>
+    </div>
+
+    <footer>Di_o_Trader © <span id="y"></span> · Templates prontos para uso — nenhuma instalação necessária</footer>
+  </div>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

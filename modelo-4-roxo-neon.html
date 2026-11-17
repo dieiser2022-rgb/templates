@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Di_o_Trader · Diário de Trade — Roxo &amp; Neon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0c0616;
+      --panel: rgba(32,16,54,0.55);
+      --purple: #b14aff;
+      --pink: #ff4ecd;
+      --cyan: #37e6ff;
+      --text: #efe6ff;
+      --muted: #a08bc0;
+      --line: rgba(177,74,255,0.3);
+      --green: #4dffa8;
+      --red: #ff5c7a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Rajdhani', system-ui, sans-serif;
+      color: var(--text); min-height: 100vh; padding: 40px 20px 70px;
+      background:
+        radial-gradient(700px 500px at 15% 0%, rgba(177,74,255,0.25), transparent 55%),
+        radial-gradient(700px 500px at 90% 20%, rgba(255,78,205,0.18), transparent 55%),
+        radial-gradient(600px 500px at 50% 100%, rgba(55,230,255,0.12), transparent 55%),
+        var(--bg);
+    }
+    .wrap { max-width: 1060px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 40px; }
+    .brand {
+      font-family: 'Orbitron', sans-serif; font-weight: 900;
+      font-size: clamp(2.1rem, 6vw, 3.6rem); letter-spacing: 0.04em;
+      color: #fff;
+      text-shadow: 0 0 10px var(--purple), 0 0 26px var(--pink), 0 0 50px rgba(177,74,255,0.6);
+    }
+    .brand .u { color: var(--cyan); text-shadow: 0 0 14px var(--cyan); }
+    .sub { font-family: 'Orbitron', sans-serif; color: var(--muted); letter-spacing: 0.3em; text-transform: uppercase; font-size: 0.78rem; margin-top: 14px; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 36px; }
+    .stat { background: var(--panel); backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; box-shadow: 0 0 24px rgba(177,74,255,0.12) inset; }
+    .stat .k { font-family: 'Orbitron', sans-serif; font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+    .stat .v { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; margin-top: 8px; color: var(--cyan); text-shadow: 0 0 12px rgba(55,230,255,0.5); }
+    .card {
+      background: var(--panel); backdrop-filter: blur(12px);
+      border: 1px solid var(--line); border-radius: 20px; padding: 26px;
+      box-shadow: 0 0 40px rgba(177,74,255,0.15);
+    }
+    .card + .card { margin-top: 20px; }
+    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+    .chip { font-family: 'Orbitron', sans-serif; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--pink); border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .field.span2 { grid-column: span 2; } .field.full { grid-column: 1 / -1; }
+    label { display: block; font-family: 'Orbitron', sans-serif; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+    input, select, textarea {
+      width: 100%; font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.98rem;
+      color: var(--text); background: rgba(12,6,22,0.6); border: 1px solid var(--line);
+      border-radius: 10px; padding: 10px 12px; outline: none; transition: box-shadow 0.15s, border-color 0.15s;
+    }
+    input::placeholder, textarea::placeholder { color: #6e5a8c; }
+    input:focus, select:focus, textarea:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(177,74,255,0.25), 0 0 18px rgba(255,78,205,0.3); }
+    select option { background: #1a0f2b; }
+    textarea { resize: vertical; min-height: 58px; }
+    .actions { display: flex; gap: 12px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
+    .btn { font-family: 'Orbitron', sans-serif; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border-radius: 12px; padding: 13px 26px; border: none; color: #0c0616; font-weight: 700; background: linear-gradient(90deg, var(--purple), var(--pink)); box-shadow: 0 0 24px rgba(255,78,205,0.5); transition: transform 0.12s, box-shadow 0.15s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 0 34px rgba(255,78,205,0.8); }
+    .btn.ghost { background: transparent; border: 1px solid var(--line); color: var(--cyan); box-shadow: none; }
+    .btn.ghost:hover { box-shadow: 0 0 18px rgba(55,230,255,0.4); }
+    footer { text-align: center; color: var(--muted); font-size: 0.84rem; margin-top: 36px; font-family: 'Orbitron', sans-serif; letter-spacing: 0.1em; }
+    footer a { color: var(--pink); text-decoration: none; }
+    @media (max-width: 680px) { .grid { grid-template-columns: 1fr 1fr; } .field.span2 { grid-column: span 2; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">Di<span class="u">_</span>o<span class="u">_</span>Trader</div>
+      <div class="sub">Trade Journal · Neon Protocol</div>
+    </header>
+
+    <section class="stats">
+      <div class="stat"><div class="k">Trades</div><div class="v">00</div></div>
+      <div class="stat"><div class="k">Win Rate</div><div class="v">--%</div></div>
+      <div class="stat"><div class="k">P&amp;L</div><div class="v">+0.0</div></div>
+      <div class="stat"><div class="k">Streak</div><div class="v">00</div></div>
+    </section>
+
+    <div id="cards"></div>
+
+    <div class="actions">
+      <button class="btn" id="addCard">+ Novo Trade</button>
+      <button class="btn ghost" onclick="window.print()">Exportar PDF</button>
+    </div>
+
+    <footer>Di_o_Trader · <a href="index.html">voltar aos modelos</a></footer>
+  </div>
+
+  <template id="tpl">
+    <div class="card">
+      <div class="card-head">
+        <span class="chip">Operação</span>
+        <select aria-label="Tipo" style="max-width:180px"><option value="">Tipo</option><option>Compra / Long</option><option>Venda / Short</option></select>
+      </div>
+      <div class="grid">
+        <div class="field"><label>Data</label><input type="date" /></div>
+        <div class="field span2"><label>Ativo / Par</label><input type="text" placeholder="SOL/USDT" /></div>
+        <div class="field"><label>Entrada</label><input type="number" step="any" placeholder="0.00" /></div>
+        <div class="field"><label>Saída</label><input type="number" step="any" placeholder="0.00" /></div>
+        <div class="field"><label>Tamanho</label><input type="text" placeholder="2x" /></div>
+        <div class="field"><label>Stop</label><input type="number" step="any" placeholder="0.00" /></div>
+        <div class="field"><label>Alvo</label><input type="number" step="any" placeholder="0.00" /></div>
+        <div class="field"><label>Resultado</label><input type="text" placeholder="+2.3R" /></div>
+        <div class="field span2"><label>Setup / Estratégia</label><input type="text" placeholder="Reversão em suporte" /></div>
+        <div class="field"><label>Psicológico</label>
+          <select><option value="">—</option><option>Calmo</option><option>Confiante</option><option>Ansioso</option><option>Impaciente</option><option>FOMO</option><option>Disciplinado</option></select>
+        </div>
+        <div class="field full"><label>Observações / Lições aprendidas</label><textarea placeholder="Registre o aprendizado desta operação..."></textarea></div>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    var tpl = document.getElementById('tpl');
+    var cards = document.getElementById('cards');
+    function addCard() { cards.appendChild(tpl.content.cloneNode(true)); }
+    document.getElementById('addCard').addEventListener('click', addCard);
+    addCard();
+  </script>
+</body>
+</html>
