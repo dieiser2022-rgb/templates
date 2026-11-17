@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Di_o_Trader · Diário de Trade — Vermelho &amp; Preto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0708;
+      --panel: #141011;
+      --panel-2: #1b1618;
+      --red: #e23434;
+      --red-soft: #ff6b6b;
+      --text: #efe8e8;
+      --muted: #938a8c;
+      --line: rgba(226, 52, 52, 0.20);
+      --green: #6fcf97;
+      --loss: #ff6b6b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background:
+        radial-gradient(900px 500px at 85% -5%, rgba(226,52,52,0.14), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 40px 20px 70px;
+      line-height: 1.5;
+    }
+    .wrap { max-width: 1140px; margin: 0 auto; }
+    .topline { height: 2px; background: linear-gradient(90deg, transparent, var(--red), transparent); margin-bottom: 34px; }
+    header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px; margin-bottom: 34px; }
+    .brand { font-family: 'Oswald', sans-serif; font-weight: 700; font-size: clamp(1.9rem, 4.5vw, 2.8rem); letter-spacing: 0.04em; text-transform: uppercase; color: var(--red); }
+    .brand .u { color: var(--red-soft); opacity: 0.6; }
+    .sub { color: var(--muted); font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; margin-top: 6px; }
+    .date-field { text-align: right; }
+    .date-field label { display: block; color: var(--muted); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
+    input, select, textarea {
+      font-family: inherit; font-size: 0.92rem; color: var(--text);
+      background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px;
+      padding: 9px 12px; outline: none; transition: border-color 0.15s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--red); }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 34px; }
+    .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+    .stat .k { color: var(--muted); font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; }
+    .stat .v { font-family: 'Oswald', sans-serif; font-size: 1.6rem; margin-top: 8px; color: var(--red); }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .panel-head { display: flex; align-items: center; gap: 10px; padding: 18px 22px; border-bottom: 1px solid var(--line); }
+    .panel-head h2 { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.04em; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--red); box-shadow: 0 0 12px var(--red); }
+    .table-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 1050px; }
+    th { text-align: left; font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); padding: 14px 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
+    td input, td select, td textarea { width: 100%; background: transparent; border: 1px solid transparent; border-radius: 6px; padding: 7px 8px; }
+    td input:hover, td select:hover, td textarea:hover { border-color: rgba(226,52,52,0.28); }
+    td input:focus, td select:focus, td textarea:focus { background: var(--panel-2); border-color: var(--red); }
+    td textarea { resize: vertical; min-height: 38px; }
+    .actions { padding: 18px 22px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { font-family: inherit; font-size: 0.86rem; font-weight: 500; letter-spacing: 0.04em; cursor: pointer; border-radius: 8px; padding: 10px 18px; border: 1px solid var(--red); background: transparent; color: var(--red); transition: all 0.15s; }
+    .btn:hover { background: var(--red); color: #0a0708; }
+    .btn.ghost { border-color: var(--line); color: var(--muted); }
+    .btn.ghost:hover { background: var(--panel-2); color: var(--text); }
+    footer { text-align: center; color: var(--muted); font-size: 0.82rem; margin-top: 36px; }
+    footer a { color: var(--red); text-decoration: none; }
+    @media (max-width: 640px) { header { flex-direction: column; align-items: flex-start; } .date-field { text-align: left; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="topline"></div>
+    <header>
+      <div>
+        <div class="brand">Di<span class="u">_</span>o<span class="u">_</span>Trader</div>
+        <div class="sub">Diário de Trade · Edição Carmesim</div>
+      </div>
+      <div class="date-field">
+        <label for="d1">Período</label>
+        <input type="month" id="d1" />
+      </div>
+    </header>
+
+    <section class="stats">
+      <div class="stat"><div class="k">Total de Trades</div><div class="v">0</div></div>
+      <div class="stat"><div class="k">Taxa de Acerto</div><div class="v">—</div></div>
+      <div class="stat"><div class="k">Resultado (R)</div><div class="v">0.0</div></div>
+      <div class="stat"><div class="k">Melhor Setup</div><div class="v">—</div></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><span class="dot"></span><h2>Registro de Operações</h2></div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th><th>Ativo / Par</th><th>Tipo</th><th>Entrada</th><th>Saída</th>
+              <th>Tamanho</th><th>Stop</th><th>Alvo</th><th>Resultado</th>
+              <th>Setup / Estratégia</th><th>Psicológico</th><th>Observações / Lições</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="date" /></td>
+              <td><input type="text" placeholder="BTC/USDT" /></td>
+              <td><select><option value="">—</option><option>Compra / Long</option><option>Venda / Short</option></select></td>
+              <td><input type="number" step="any" placeholder="0,00" /></td>
+              <td><input type="number" step="any" placeholder="0,00" /></td>
+              <td><input type="text" placeholder="0,5 lote" /></td>
+              <td><input type="number" step="any" placeholder="0,00" /></td>
+              <td><input type="number" step="any" placeholder="0,00" /></td>
+              <td><input type="text" placeholder="+1,8R" /></td>
+              <td><input type="text" placeholder="Rompimento" /></td>
+              <td><select><option value="">—</option><option>Calmo</option><option>Confiante</option><option>Ansioso</option><option>Impaciente</option><option>FOMO</option><option>Disciplinado</option></select></td>
+              <td><textarea placeholder="O que deu certo? O que repetir ou evitar?"></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="date" /></td>
+              <td><input type="text" /></td>
+              <td><select><option value="">—</option><option>Compra / Long</option><option>Venda / Short</option></select></td>
+              <td><input type="number" step="any" /></td>
+              <td><input type="number" step="any" /></td>
+              <td><input type="text" /></td>
+              <td><input type="number" step="any" /></td>
+              <td><input type="number" step="any" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><select><option value="">—</option><option>Calmo</option><option>Confiante</option><option>Ansioso</option><option>Impaciente</option><option>FOMO</option><option>Disciplinado</option></select></td>
+              <td><textarea></textarea></td>
+            </tr>
+            <tr>
+              <td><input type="date" /></td>
+              <td><input type="text" /></td>
+              <td><select><option value="">—</option><option>Compra / Long</option><option>Venda / Short</option></select></td>
+              <td><input type="number" step="any" /></td>
+              <td><input type="number" step="any" /></td>
+              <td><input type="text" /></td>
+              <td><input type="number" step="any" /></td>
+              <td><input type="number" step="any" /></td>
+              <td><input type="text" /></td>
+              <td><input type="text" /></td>
+              <td><select><option value="">—</option><option>Calmo</option><option>Confiante</option><option>Ansioso</option><option>Impaciente</option><option>FOMO</option><option>Disciplinado</option></select></td>
+              <td><textarea></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="actions">
+        <button class="btn" id="addRow">+ Nova operação</button>
+        <button class="btn ghost" onclick="window.print()">Imprimir / PDF</button>
+      </div>
+    </section>
+
+    <footer>Di_o_Trader · <a href="index.html">voltar aos modelos</a></footer>
+  </div>
+
+  <script>
+    document.getElementById('addRow').addEventListener('click', function () {
+      var tbody = document.querySelector('tbody');
+      var first = tbody.querySelector('tr');
+      var clone = first.cloneNode(true);
+      clone.querySelectorAll('input, textarea').forEach(function (el) { el.value = ''; });
+      clone.querySelectorAll('select').forEach(function (el) { el.selectedIndex = 0; });
+      tbody.appendChild(clone);
+    });
+  </script>
+</body>
+</html>
